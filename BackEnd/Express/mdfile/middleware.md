@@ -19,6 +19,7 @@
 
 ## Power
 
+- it has access to both `request` & `response` object
 - if it's true then it send to handler function
 - it can modify request
 - can send response from anywhere
@@ -79,3 +80,11 @@ app.get("/local", middleware, (req, res) => {
   res.send(`<h1>Local Middleware!</h1>`);
 });
 ```
+
+### Types of Middleware
+
+- application level middleware: `app.use()`
+- router level middleware: `router.use()`
+- error handling middleware
+- build in middleware: `express.json()`/ `express.static()`
+- third-party middleware: `cookie-parser`

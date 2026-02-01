@@ -78,3 +78,82 @@
    req.get("Something");
    // => undefined
    ```
+
+## Common method
+
+> `http://localhost:4000/user/5?filter=name`
+
+- req.baseUrl
+- req.`originalUrl`: `/user/5`
+- req.`path`: `/user/5`
+- req.`hostname`: `localhost`
+
+```js
+const app = express();
+
+const adminRoute = express.Router();
+
+app.use("/admin", adminRoute);
+
+adminRoute.get("/dashboard", (req, res) => {
+  res.send(`This is admin page`);
+});
+```
+
+> `http://localhost:4000/admin/dashboard`
+
+- `base url`: `/admin`
+- `original url`: `/admin/dashboard`
+- `path`: `/dashboard`
+- `hostname`: `localhost`
+
+* req.`ip`: `::ffff:127.0.0.1`
+* req.`method`: `GET/POST/PUT/PATCH/DELETE`
+* req.`protocol`: `http`
+* req.`params`: `{id: '5}`
+* req.`query`: `{filter: 'name'}`
+
+### req.`body`:
+
+---
+
+```js
+// to send data through body need to use app.use(express.json())
+// without using this middlewere it consoles `undifined`
+// also send some data through body
+app.use(express.json());
+app.post("/", (req, res) => {
+  console.log(req.body);
+  res.send("This is post method!");
+});
+```
+
+```json
+{
+  "name": "express practice"
+}
+// console.log: { name: 'express practice' }
+```
+
+### req.`cookies`
+
+---
+
+- step 1: To use cookies in express:
+
+  ```bash
+  npm i cookie-parser
+  ```
+
+* step 2:
+
+  ```js
+  const cookeParser = require("cookie-parser");
+
+  app.use(cookeParser());
+  ```
+
+* step 3: create cookie from postman (for manually)
+
+- req.`signedCookies`: if want to make cookie `cryptographycally secure`
+- req.`secure`: `true` from `https`, `false` from `http`

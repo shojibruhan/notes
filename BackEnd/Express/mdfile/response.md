@@ -141,6 +141,8 @@
     res.status(500).send({ error: "something blew up" });
     ```
 
+    > difference between `res.end()` & `res.send()` is, first one ending connection between client & server without data, second one with data.
+
 9.  **res.set(field [, value])**
 
     > Sets the response’s HTTP header field to value. To set multiple fields at once, pass an object as the parameter.
