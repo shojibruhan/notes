@@ -14,7 +14,10 @@
 npm i mongoose
 ```
 
-# create a schema
+# create a Schema + model
+
+- step 1: Create a schema
+- step 2: Create a model using schema
 
 ```js
 const schemaName = new mongoose.Schema({
@@ -63,4 +66,27 @@ mongoose
   .catch((err) => {
     console.log("❌ Can't Connect", err);
   });
+```
+
+> async await
+
+```bash
+# for using .env file accessable::  process.env.MONGODB_URI
+npm i dotenv
+```
+
+```js
+require("dotenv").config();
+
+const dbConnect = async () => {
+  try {
+    const connect = await mongoose.connect(process.env.MONGODB_URI);
+    console.log("✅ Connected with database");
+  } catch (err) {
+    console.error(err);
+    console.log("❌ Can't Connect");
+  }
+};
+
+dbConnect();
 ```
