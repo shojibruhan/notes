@@ -109,6 +109,16 @@ req.on("data", (chunk) => {
 });
 ```
 
+```js
+const fs = require("fs");
+
+const file = fs.createReadStream(`${__dirname}/index.html`);
+
+file.on("data", (value) => {
+  console.log(value.toString());
+});
+```
+
 works only because `"data"` is a real event name that Node `emits`. If changes to something else that event never fires. Node doesn’t know about it.
 
 some example like 'data':
