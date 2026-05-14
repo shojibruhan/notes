@@ -180,6 +180,14 @@ When, `from_attributes=True` Pydantic can work with both dictionary-style and at
 
 So before: pydantic only accepted dictionary-style data, but now it can also accept attribute-style data.
 
+**New style (Pydantic v2)**
+
+```python
+from pydantic import ConfigDict
+
+model_config = ConfigDict(from_attributes=True)
+```
+
 # Best Practices for validation:
 
 - Always return a value even you didn't modify it. Don't return None.
