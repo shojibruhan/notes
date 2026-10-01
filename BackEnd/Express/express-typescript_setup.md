@@ -2,7 +2,7 @@
 
 ```js
 npm i express cors
-npm i -D typescript tsx tsc-alias tsconfig-paths @types/express @tsconfig/node24 @types/cors
+npm i -D typescript tsx tsc-alias tsconfig-paths @types/node @types/express @tsconfig/node24 @types/cors
 ```
 
 # Step 2: Create config file and add the followings
@@ -15,22 +15,32 @@ add the json
 
 ```json
 {
-  "extends": "@tsconfig/node24/tsconfig.json",
+  "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
+    "target": "ESNext",
+    "lib": ["ES6"],
+    "allowJs": true,
     "module": "nodenext",
-    "target": "esnext",
-    "types": [],
+    "rootDir": ".",
+    "outDir": "./dist",
+    "esModuleInterop": true,
     "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "sourceMap": true,
+    "types": ["node"],
+    "noImplicitAny": false,
 
     "paths": {
-      "@src/*": ["./src/*"]
-    },
-
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
-  }
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["src/**/*", "prisma.config.ts"],
+  "exclude": ["node_modules"]
 }
 ```
 
